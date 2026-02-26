@@ -1,0 +1,10 @@
+{
+[
+  "^@/shared/components/(.*)$",
+  "^@/shared/components/ui/(.*)$",
+]
+
+"importOrderSeparation": true,
+"importOrderSortSpecifiers": true,
+"plugin": ["@trivago/prettier-plugin-sort-import", "prettier-plugin-tailwindcss"]
+}
