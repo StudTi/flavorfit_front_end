@@ -7,16 +7,26 @@ interface Props {
 
 export function AuthFormChange({ isLogin }: Props) {
   return (
-    <div className="mt-3 text-center">
+    <div className="mt-3 text-center text-sm">
       {isLogin ? (
         <div>
           Хотите создать аккаунт? {' '}
-          <Link href={PAGES.REGISTER} className="underline">Регистрация</Link>
+          <Link
+            href={PAGES.REGISTER}
+            className="link-simple"
+          >
+            Регистрация
+          </Link>
         </div>
       ) : (
         <div>
           Уже существует аккаунт? {' '}
-          <Link href={PAGES.LOGIN} className="underline">Авторизация</Link>
+            <Link
+              href={PAGES.LOGIN}
+              className="link-simple"
+            >
+              Авторизация
+            </Link>
         </div>
       )}
     </div>

@@ -52,6 +52,8 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
+
+  --text-4_5-xl: 2.6rem;
 }
 
 :root {
@@ -78,7 +80,8 @@
   --accent-dark: #c8a415;
   --accent-foreground: black;
   
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(54.771% 0.2036 25.223);
+
   --border: oklch(0.92 0.004 286.32);
   --input: oklch(0.92 0.004 286.32);
   --ring: oklch(0.705 0.015 286.067);
@@ -112,4 +115,10 @@ html {
 
 button {
   @apply transition-colors
+}
+
+/* Стилизация ссылки для регистрации и входа в аккаунт */
+.link-simple {
+  @apply hover:text-purple-400 underline underline-offset-2 
+  text-white transition-colors font-semibold;
 }

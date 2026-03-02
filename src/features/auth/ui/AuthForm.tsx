@@ -7,8 +7,8 @@ import { AuthFormChange } from "./AuthFormChange"
 import { useForm } from "react-hook-form"
 import { isEmailRegex } from "../utils/is-email.regex"
 import { IAuthFormData } from "../types/auth-form.types"
-import cn from 'clsx'
 import { toast } from "sonner"
+import Image from "next/image"
 
 
 interface Props {
@@ -55,12 +55,13 @@ export function AuthForm({ type }: Props) {
       }
     })
   }
-
   return (
     <div className="flex h-screen">
-      <div className="bg-violet-500 rounded-2xl w-sm m-auto p-6 text-white shadow-lg">
+      <div className="bg-gradient-to-b from-primary to-violet-400 rounded-2xl w-sm m-auto p-10 text-white shadow-lg relative">
 
-        <h1 className="text-center text-4xl font-bold mb-5">{isLogin ? 'Логин' : 'Регистрация'}</h1>
+        <h1 className="text-center text-4xl font-bold mb-7">
+          {isLogin ? 'Логин' : 'Регистрация'}
+        </h1>
 
         <form
           className="space-y-3"
@@ -78,15 +79,12 @@ export function AuthForm({ type }: Props) {
             })}
             type="email"
             placeholder="Почта"
-            className={cn(
-              'border border-transparent transition-colors',
-              errors.email ? 'border-red-500' : ''
-            )}
+            aria-invalid={!!errors.email}
           />
 
           {/* Вывод ошибки */}
           {errors.email && (
-            <p className="text-sm text-red-500">
+            <p className="text-sm text-destructive">
               {errors.email.message}
             </p>
           )}
@@ -102,14 +100,12 @@ export function AuthForm({ type }: Props) {
             })}
             type="password"
             placeholder="Пароль"
-            className={cn(
-              'border border-transparent transition-colors',
-              errors.password ? 'border-red-500' : '')}
+            aria-invalid={!!errors.password}
           />
 
           {/* Вывод ошибки */}
           {errors.password && (
-            <p className="text-sm text-red-500">
+            <p className="text-sm text-destructive">
               {errors.password.message}
             </p>
           )}
@@ -117,19 +113,25 @@ export function AuthForm({ type }: Props) {
           {/* Кнопка логина и регистрации */}
           <div className="text-center">
             <Button
-              onClick={() => 
-                toast("", {
-                  description: "" 
-                })
-              }
               type="submit"
               disabled={!isValid || loading}
+              variant="secondary"
             >
               {isLogin ? 'Логин' : 'Регистрация'}
             </Button>
           </div>
         </form>
-        <AuthFormChange isLogin={isLogin}/>      
+        <AuthFormChange isLogin={isLogin} />
+        
+        {/* Стикер салата на форме авторизации и регистрации */}
+        <Image
+          src="/images/stickers/salad.png"
+          alt="Салат"
+          width={140}
+          height={140}
+          className="absolute -left-12 -bottom-10 rotate-10"
+          draggable={false} // не дает возможность перетащить изображение
+        />
       </div>
     </div>
   )
