@@ -122,6 +122,15 @@ export function AuthForm({ type }: Props) {
           </div>
         </form>
         <AuthFormChange isLogin={isLogin} />
+
+        {/* <Image
+          src="/images/icons/mail.png"
+          alt="mail"
+          width={20}
+          height={20}
+          className="absolute left-3 bottom-47"
+          draggable={false}
+        /> */}
         
         {/* Стикер салата на форме авторизации и регистрации */}
         <Image
