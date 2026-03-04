@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`
   },
   description: "Веб-приложение для управления вашими повседневными задачами и делами",
+
+  //  Отобразили иконку на вкладке страницы
+  icons: [{url: "/favicon.svg", type: "image/svg+xml"}]   
 };
 
 export default function RootLayout({

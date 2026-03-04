@@ -5,37 +5,37 @@ import { BookMarked, CalendarDaysIcon, ForkKnifeIcon, House, LineChart, StoreIco
 export const navMenuItems: IMenuItem[] = [
   {
     icon: House,
-    label: 'Home',
+    label: 'Главная',
     href: PAGES.DASHBOARD
   },
   {
     icon: CalendarDaysIcon,
-    label: 'Meal Plans',
+    label: 'График',
     href: PAGES.MEAL_PLANS
   },
   {
     icon: ForkKnifeIcon,
-    label: 'Nutrition',
+    label: 'Питание',
     href: PAGES.NUTRITION
   },
   {
     icon: LineChart,
-    label: 'Analytics',
+    label: 'Мониторинг',
     href: PAGES.ANALYTICS
   },
   {
     icon: StoreIcon,
-    label: 'Order Groceries',
+    label: 'Заказы',
     href: PAGES.ORDER_GROCERIES
   },
   {
     icon: BookMarked,
-    label: 'Recipes',
+    label: 'Рецепты',
     href: PAGES.RECIPES
   },
   {
     icon: UsersRound,
-    label: 'Forum',
+    label: 'Форум',
     href: PAGES.FORUM
   }
 ]

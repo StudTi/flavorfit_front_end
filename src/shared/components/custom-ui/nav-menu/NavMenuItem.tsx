@@ -16,7 +16,7 @@ export function NavMenuItem({isActive, menuItem}: Props) {
         'flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-medium transition-colors',
         isActive
           ? 'bg-[#1f2023] text-white'
-          : 'text-gray-800 bg-[#e9e9e9] hover:bg-gray-300'
+          : 'text-gray-600 bg-[#e9e9e9] hover:bg-gray-300'
       )}
     >
       <menuItem.icon

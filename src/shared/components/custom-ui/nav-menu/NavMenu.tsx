@@ -14,7 +14,7 @@ export function NavMenu({ menu }: Props) {
 
 
   return (
-    <nav className="flex items-center gap-2 pl-2">
+    <nav className="flex items-center gap-3 pl-2">
       {menu.map(menuItem => (
         <NavMenuItem
           key={menuItem.href}
