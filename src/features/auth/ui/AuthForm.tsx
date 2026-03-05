@@ -1,14 +1,15 @@
 'use client'
-import { LoginDocument, RegisterDocument, type AuthInput } from "@/__generated__/graphql"
+import { LoginDocument, MeDocument, RegisterDocument, type AuthInput, type LoginMutation, type LoginMutationVariables, type RegisterMutation, type RegisterMutationVariables } from "@/__generated__/graphql"
 import { Button } from "@/shared/components/ui/button"
 import { Input } from "@/shared/components/ui/input"
-import { useMutation } from "@apollo/client/react"
+import { useApolloClient, useMutation } from "@apollo/client/react"
 import { AuthFormChange } from "./AuthFormChange"
 import { useForm } from "react-hook-form"
 import { isEmailRegex } from "../utils/is-email.regex"
 import { IAuthFormData } from "../types/auth-form.types"
 import { toast } from "sonner"
 import Image from "next/image"
+import { cache } from "react"
 
 
 interface Props {
@@ -27,12 +28,24 @@ export function AuthForm({ type }: Props) {
     }
   })
 
+  const client = useApolloClient()
+
   //* Уведомление о входе и ошибках
 
-  const [auth, { loading }] = useMutation(
-    isLogin ? LoginDocument : RegisterDocument,
-    {
-      onCompleted: () => {
+  const [auth, { loading }] = useMutation<
+    LoginMutation | RegisterMutation,
+    LoginMutationVariables | RegisterMutationVariables
+  >(isLogin ? LoginDocument : RegisterDocument, {
+      onCompleted: data => {
+        const authData = 'login' in data ? data.login : data?.register
+        
+        client.writeQuery({
+          query: MeDocument,
+          data: {
+            me: authData.user
+          }
+        })
+
         toast.success(
           isLogin ? 'Вход выполнен успешно!' : 'Регистрация прошла успешно!',
           {
@@ -122,15 +135,6 @@ export function AuthForm({ type }: Props) {
           </div>
         </form>
         <AuthFormChange isLogin={isLogin} />
-
-        {/* <Image
-          src="/images/icons/mail.png"
-          alt="mail"
-          width={20}
-          height={20}
-          className="absolute left-3 bottom-47"
-          draggable={false}
-        /> */}
         
         {/* Стикер салата на форме авторизации и регистрации */}
         <Image

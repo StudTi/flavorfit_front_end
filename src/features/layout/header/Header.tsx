@@ -5,10 +5,12 @@ import Link from "next/link";
 import { PAGES } from "@/shared/config/page.config";
 import { Logo } from "@/shared/components/ui/Logo";
 import { Button } from "@/shared/components/ui/button";
-import { Bell, BellDotIcon, Headset } from "lucide-react";
+import { Bell, Headset } from "lucide-react";
 import { UserInfo } from "@/shared/components/custom-ui/user-info/UserInfo";
+import { useAuth } from "@/features/hooks/useAuth";
 
 export function Header() {
+  const {user} = useAuth()
   return (
     <header className="flex items-center justify-between p-6">
       <div className="flex items-center gap-9">
@@ -41,7 +43,7 @@ export function Header() {
         <UserInfo
           avatarUrl=""
           name="Sergey"
-          email="d.c.0303@mail.ru"
+          email={user?.email || ''}
         />
       </div>
     </header>
