@@ -1,3 +1,4 @@
+import { forwardRef } from "react"
 import { Avatar, AvatarBadge, AvatarFallback, AvatarImage } from "../../ui/avatar"
 
 interface Props {
@@ -6,8 +7,8 @@ interface Props {
   email: string
 }
 
-export function UserInfo({ avatarUrl, name, email }: Props) {
-  return <div className="flex items-center gap-3">
+export const UserInfo = forwardRef<HTMLDivElement, Props>(({ avatarUrl, name, email, ...props }, ref) => {
+  return <div ref={ref} className="flex items-center gap-3" {...props}>
 
     <Avatar>
       <AvatarImage src="/images/icons/chicken.png" />
@@ -21,5 +22,6 @@ export function UserInfo({ avatarUrl, name, email }: Props) {
     </div>
 
   </div>
-}
+}) 
+
 

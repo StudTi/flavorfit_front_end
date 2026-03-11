@@ -9,7 +9,8 @@ import { isEmailRegex } from "../utils/is-email.regex"
 import { IAuthFormData } from "../types/auth-form.types"
 import { toast } from "sonner"
 import Image from "next/image"
-import { cache } from "react"
+import { useRouter } from "next/navigation"
+import { PAGES } from "@/shared/config/page.config"
 
 
 interface Props {
@@ -29,6 +30,7 @@ export function AuthForm({ type }: Props) {
   })
 
   const client = useApolloClient()
+  const router = useRouter()
 
   //* Уведомление о входе и ошибках
 
@@ -52,6 +54,7 @@ export function AuthForm({ type }: Props) {
             id: 'auth-success'
           }
         )
+        router.replace(PAGES.DASHBOARD)
       },
       onError: error => {
         toast.error(error.message, {

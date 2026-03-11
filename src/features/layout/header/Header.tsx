@@ -6,8 +6,8 @@ import { PAGES } from "@/shared/config/page.config";
 import { Logo } from "@/shared/components/ui/Logo";
 import { Button } from "@/shared/components/ui/button";
 import { Bell, Headset } from "lucide-react";
-import { UserInfo } from "@/shared/components/custom-ui/user-info/UserInfo";
 import { useAuth } from "@/features/hooks/useAuth";
+import { LogoutProfile } from "./LogoutProfile";
 
 export function Header() {
   const {user} = useAuth()
@@ -40,11 +40,7 @@ export function Header() {
           <Bell className="size-4.5"/>
         </Button>
 
-        <UserInfo
-          avatarUrl=""
-          name="Sergey"
-          email={user?.email || ''}
-        />
+        <LogoutProfile />
       </div>
     </header>
   )
